@@ -2,17 +2,34 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>HTML/CSS - Web 2 CDGD339</title>
+	<title>HTML/CSS - Web 2 Fall 2012</title>
 	<meta name="viewport" content="width=1024">
+  
+  	<!-- Replace path with correct path to deck.core.css. -->
+	<link rel="stylesheet" href="src/deck.js/core/deck.core.css" type="text/css">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="src/deck.js/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="src/css/prettify.css">
+	<link rel="stylesheet" href="src/css/deck.coder.css">
+	
 
-        <link rel="stylesheet" href="dist/coderdeck-core.min.css" type="text/css">
-  <link rel="stylesheet" id='style-theme-link' href="css/coderdeck.css" type="text/css" >
+	<!-- Theme -->
+	<link rel="stylesheet" id='style-theme-link' href="src/css/coderdeck.css" type="text/css" >
 
-  <script type="text/javascript" src="http://use.typekit.com/idq2tqo.js"></script>
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<link rel="stylesheet" href="src/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="src/codemirror/theme/default.css">
+
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
 
 	<script src='dist/jquery.min.js'></script>
 	<script src="dist/modernizr.js"></script>
+
+
 </head>
 <body class="deck-container">
 
@@ -75,7 +92,7 @@
 
 <h2>
   CSS<br/>
-  <a href='http://bit.ly/massart-web2-3'>http://bit.ly/massart-web2-4</a>
+  <a href='http://bit.ly/web2fal2012-4'>http://bit.ly/web2fal2012-4</a>
 </h2>
 </article>
 
@@ -139,35 +156,44 @@ function shuffleHomework(amt) {
 <article class='slide slide-list'>
 <h2>Homework Review</h2>
 	<a href='javascript:shuffleHomework(10);'>Shuffle</a>
-<ul>
-  <ul id='homework'>
+<ul id='homework'>
   	<li >
-    <h3>Aimee <a href='http://aimeeb.github.com/'>http://aimeeb.github.com/</a></h3>
+    <h3><a href='http://yifeiwang12.github.com/'>http://yifeiwang12.github.com/</a></h3>
   	</li>
   	<li >
-    <h3>Christina <a href='http://cmyung.github.com'>http://cmyung.github.com</a></h3>
+    <h3><a href='http://vanzimmerman.github.com/'>http://vanzimmerman.github.com/</a></h3>
   	</li>
   	<li >
-    <h3>Leah <a href='http://leahbrunetto.github.com'>http://leahbrunetto.github.com</a></h3>
+    <h3><a href='http://ldamon.github.com/'>http://ldamon.github.com/</a></h3>
   	</li>
   	<li >
-    <h3>Meggles <a href='http://Meggles.github.com/Web-339/'>http://Meggles.github.com/Web-339/</a></h3>
+    <h3><a href='http://steinerfamily.github.com/'>http://steinerfamily.github.com/</a></h3>
   	</li>
   	<li >
-    <h3>Cheryl <a href='http://cmccaffrey.github.com/'>http://cmccaffrey.github.com/</a></h3>
+    <h3><a href='http://mhcraven.github.com/'>http://mhcraven.github.com/</a></h3>
   	</li>
   	<li >
-    <h3>Lauren <a href='http://laz231.github.com/'>http://laz231.github.com/</a></h3>
+    <h3><a href='http://trish20.github.com/'>http://trish20.github.com/</a></h3>
   	</li>
   	<li >
-    <h3>Rebecca <a href='http://salonstress.github.com'>http://salonstress.github.com</a></h3>
+    <h3><a href='http://johnmacleod.github.com/'>http://johnmacleod.github.com/</a></h3>
   	</li>
   	<li >
-    <h3>Amanda <a href='http://acacheung.github.com'>http://acacheung.github.com</a></h3>
+    <h3><a href='http://kanaeiref.github.com/'>http://kanaeiref.github.com/</a></h3>
   	</li>
     <li>
-    <h3>Kristina <a href='http://kristinasym.github.com'>http://kristinasym.github.com</a></h3>
-  </ul>
+    <h3><a href='http://mttsp.github.com/'>http://mttsp.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://joewebsta.github.com/'>http://joewebsta.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://jennpipp.github.com/'>http://jennpipp.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://ilanaiguana.github.com/'>http://ilanaiguana.github.com/</a></h3>
+    </li>
+</ul>
 </article>
 
 <article class='slide slide-accent'>
@@ -230,13 +256,13 @@ function shuffleHomework(amt) {
 	<li class='slide'>
 		<h3>
 		class name preﬁxed with a period (.)<br/>
-		&lt;div class=‘<em>my-class-name</em>’&gt;..&lt;/div&gt;<br/>
+		&lt;div class=‘<em>my-class-name</em>'&gt;..&lt;/div&gt;<br/>
 		= <em>.my-class-name</em> { ... }
 	</h3>
 	</li>
 	<li class='slide'>
 		<h3>element id preﬁxed with a pound sign (#)<br/>
-			&lt;div id=‘<em>my-id</em>’&gt;..&lt;/div&gt;<br/>
+			&lt;div id=‘<em>my-id</em>'&gt;..&lt;/div&gt;<br/>
 			= <em>#my-id</em>{ ... }
 	</h3>
 </li>
@@ -282,8 +308,8 @@ function shuffleHomework(amt) {
 		<h3>Psudeo-classes that apply to elements in certain conditions</h3>
 			<ul>
 				<li><em>a:hover</em>{ color:blue; } /* only links we are hovering over */<br/>
-					<em>a:visited></em> { color:red; } /* links we've visited already */<br/>
-					<em>p:first-child ></em> { color:red; } /* the first paragraph in a container */<br/>
+					<em>a:visited</em> { color:red; } /* links we've visited already */<br/>
+					<em>p:first-child</em> { color:red; } /* the first paragraph in a container */<br/>
 				</li>
 			</ul>		
 	</li>
@@ -341,7 +367,7 @@ function shuffleHomework(amt) {
 	(Padding is layout, color is style)</h3>
 </li>
 <li class="slide">
-	<h3>Style generally inherit, Layout don’t</h3>
+	<h3>Style generally inherit, Layout don't</h3>
 </li>
 <li class="slide">
 	<h3>Sometimes can be combined into one: e.g.<br/>
@@ -454,13 +480,67 @@ p {
 <img src='images/layout.jpg'/>
 </article>
 
-<article class="slide slide-subhead">
-<h2><br/><br/>Understanding floats + Positioning</h2>
-	<p><a href='http://www.barelyfitz.com/screencast/html-training/css/positioning/'>http://www.barelyfitz.com/screencast/html-training/css/positioning/</a></p>
+
+<article class="slide slide-list">
+<h1>Only two types of positioning:</h1>
+	<ul>
+		<li class="slide">
+    <h3>1. Using floats to align things next to each other</h3>
+		</li>
+		<li class="slide">
+			<h3>2. Use “position:absolute; top:...; left:....” inside of a positioned container.</h3>
+		</li>
+    <style>
+.position-example { 
+  -webkit-transition: -webkit-transform 1s linear; 
+  -webkit-transform: translate(0,0) rotate(0deg); }
+.position-example.deck-current {
+ -webkit-transform: translate(30px,250px) rotate(15deg);
+}
+    </style>
+		<li class="position-example slide">
+    <h3 style=''>(I lied) 3. you can use transforms - but let's ignore those for now</h3>
+		</li>
+	</ul>
 </article>
 
 <article class="slide slide-list">
-<h1>Positioning 101</h1>
+<h1>Positioning with floats</h1>
+	<ul>
+		<li class="slide">
+    <h3>Use float:left or float:right to float elements</h3>
+		</li>
+		<li class="slide">
+    <h3>Make sure that elements have a width - floating will squeze elements down</h3>
+		</li>
+		<li class="slide">
+    <h3>Make sure to clear your floats otherwise the container won't have a height</h3>
+		</li>
+		<li class="slide">
+    <h3>You need an extra element to clear, or can use the clearfix</h3>
+		</li>
+	</ul>
+</article>
+
+
+<article class="slide slide-list">
+<h2>Clearfix</h2>
+	<pre>.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+	}
+
+.clearfix { display: inline-block; }
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }</pre>
+</article>
+
+<article class="slide slide-list">
+<h1>Positioning Absolutely</h1>
 	<ul>
 		<li class="slide">
 			<h3>Use “position:relative” to create an zone for absolutely positioning content</h3>
@@ -479,25 +559,57 @@ p {
 <img src='images/position-exercise.png'/>
 </article>
 
+<!-- Example
+<style>
+  #container { background-color:lightgray; margin:20px; height:300px; }
+
+  #container-top { position:relative; margin:10px; padding:10px; background-color:gray; }
+  #top-left { posiition:absolute; left:0px; top:0px; padding:10px; backbround-color:gray; }
+  #top-center { position:absolute; left:40%; top:0px; background-color:red; }
+  
+  #container-center { padding:0 10px; }
+  .blocks { position:absolute; bottom:0px; right:0px; }
+  .block { width:20px; height:20px; background-color:white; float:left; margin:0 10px; }
+  
+  .left { float:left; width:40%; height:150px; background-color:white; }
+  .right { float:right; width:40%; height:150px; background-color:white; }
+  
+  #container-bottom { clear:both; padding:10px;  }
+  .bottom { text-align:center; background-color:darkgray; padding:10px; }
+  
+  
+</style>
+
+-->
 
 <article class='slide slide-list'>
 <h2>Positioning Exercise</h2>
-<textarea class='coder-editor coder-editor-full' data-coder-template="coderdeck-plain" id='coderdeck-default'>
+<textarea class='coder-editor coder-editor-split' data-coder-template="coderdeck-plain" id='coderdeck-default' data-save='webfall2012-04-example'>
 <style>
-  #container { background-color:lightgray; margin:20px; height:300px; }
+  #container { background-color:lightgray; margin:20px; padding:20px; height:300px; }
 
 
 </style>
 <div id='site'>
 Above Container
 <div id='container'>
-  <div id='top-left'>I'm in the top left!</div>
-  <div id='bottom-right'>I'm in the bottom right!</div>
-  <div class='blocks'>
-	  <div class='block'></div>
-	  <div class='block'></div>
-	  <div class='block'></div>
-	  <div class='block'></div>
+  <div id='container-top'>
+    <div id='top-left'>I'm in the top left!</div>
+    <div id='top-center'>I'm in the top center!</div>
+  
+    <div class='blocks'>
+      <div class='block'></div>
+      <div class='block'></div>
+      <div class='block'></div>
+      <div class='block'></div>
+    </div>
+  </div>
+  <div id='container-center'>
+    <div class='left'>I'm Left</div>
+    <div class='right'>I'm Right</div>
+  </div>
+  <div id='container-bottom'>
+    I'm at the bottom
   </div>
 </div>
 Below Container
@@ -549,11 +661,14 @@ Below Container
 </article>	
 
 <article class="slide slide-subhead">
-	<h1>Start with<br/> your reset</h1>
-	<p>Eric Meyer Reset<br/>
-		<a href="http://meyerweb.com/eric/tools/css/reset/">http://meyerweb.com/eric/tools/css/reset/</a>
+	<h1>Start with a baseline</h1>
+	<p>Eric Meyer Reset
+  <a href="http://meyerweb.com/eric/tools/css/reset/">http://meyerweb.com/eric/tools/css/reset/</a><br/>
+    or Normalize
+    <a href='http://necolas.github.com/normalize.css/'>http://necolas.github.com/normalize.css/</a><br/>
+    or Boilerplate
+    <a href='http://html5boilerplate.com/'>http://html5boilerplate.com/</a>
 	</p>
-	<h2><a href="http://bit.ly/meyerreset">http://bit.ly/meyerreset</a>
 	</h2>	
 </article>
 
@@ -573,11 +688,11 @@ section#content {
 	<ul>
 		<li class="slide">
 			<h3>Using HTML5 tags - use a shiv<br/> <a href="http://code.google.com/p/html5shiv/">http://code.google.com/p/html5shiv/</a><br/>
-				(Or Modernizr, which we’ll discuss later)</h3>
+				(Or Modernizr, which we'll discuss later)</h3>
 		</li>
 		<li class="slide">
 			<h3>Link to your stylesheet with a link tag in your &lt;head&gt;:<br/> 
-				<pre>&lt;link type=‘text/css’ rel=‘stylesheet’ href=‘style.css’ /&gt;</pre>
+				<pre>&lt;link type='text/css' rel=‘stylesheet' href=‘style.css' /&gt;</pre>
 			</h3>
 		</li>
 	</ul>
@@ -652,21 +767,6 @@ aside#sidebar { float:right; width:220px; padding:50px 10px;; }
 footer#site-footer {     clear:both; background-color:black;     color:white; padding:10px 0px;  }</pre>
 </article>
 
-<article class="slide slide-list">
-<h2>Clearfix</h2>
-	<pre>.clearfix:after {
-  content: ".";
-  display: block;
-  clear: both;
-  visibility: hidden;
-  line-height: 0;
-  height: 0;
-	}
-
-.clearfix { display: inline-block; }
-  html[xmlns] .clearfix { display: block; }
-  * html .clearfix { height: 1%; }</pre>
-</article>
 
 
 <article class="slide slide-list">
@@ -693,70 +793,61 @@ footer#site-footer {     clear:both; background-color:black;     color:white
 	</ol>	
 </article>	
 
-<article class='slide slide-list'>
-<h2>Navbar: Make this</h2>
-<img src='images/menubar.png'/>
-<textarea class='coder-editor coder-editor-split' data-coder-template="coderdeck-plain" id='coderdeck-plain'>
-<style>
-	/* Style it here */
 
-</style>
-<nav id='main-menu'>
-<ul>
-	<li>
-		<a href="#">Home</a></li>
-	<li>
-		<a href="#">About</a></li>
-	<li>
-		<a href="#">Blog</a></li>
-	<li class='last'>
-		<a href="#">Contact</a></li>
-</ul>
-</nav>
-</textarea>
-<script type='coder-solution'>
-<style>
-/* Style it here */
-#main-menu  {
-    position:absolute;
-    top:20px;
-    right:20px;
-    background-color:gray;
-    float:right;
-    border-radius:10px;
-    box-shadow:4px 4px 4px #666;
-    padding:0 10px;
-    margin:0 20px;
- }
-  #main-menu li { 
-    float:left; 
-    border-right:1px solid #CCC;
-  }
-  #main-menu li.last { border:0px; }
-  #main-menu li a { display:block; 
-    padding:15px 20px;
-    font-size:18px;
-    color:white;
-    text-decoration:none;
-  }
-  #main-menu li a:hover { background-color:#DDD; }
-</style>
-<nav id='main-menu'>
-<ul>
-	<li>
-		<a href="#">Home</a></li>
-	<li>
-		<a href="#">About</a></li>
-	<li>
-		<a href="#">Blog</a></li>
-	<li class='last'>
-		<a href="#">Contact</a></li>
-</ul>
-</nav>
-</script>
+<article class='slide slide-subhead'>
+  <h1>Let's make a polaroid</h1>
+  <img src='images/polaroid.jpg'/>
+
 </article>
 
+<article class='slide slide-list'>
+  <h1>Let's make a polaroid</h1>
+  <p>Let's make a polaroid (<a href='http://www.flickr.com/photos/snowpeak/4152675183/'>Image Source</a>)</p>
+  <textarea class='coder-editor coder-editor-instant'>
+<style>
+  .container { text-align:center; padding-top:30px;}
+  .polaroid {
+    display:inline-block;
+    width: 282px;
+    font-size:1.2em;
+    color:#444;
+    font-family:times;
+    font-weight:bold;
+  }
+</style>
+<div class='container'>
+  <div class='polaroid'>
+   <img src='images/birds.jpg'>
+    Those are some crazy birds!
+  </div>
+</div>
 
+  </textarea>
+<script type='coder-solution'>
+<style>
+  .container { text-align:center; padding-top:30px;}
+  .polaroid {
+    display:inline-block;
+    width: 282px;
+    border:1px solid #DDD;
+    padding:5px 5px 50px 5px;
+    box-shadow:5px 5px 10px #CCC;
+    -webkit-transform:rotate(15deg);
+    font-size:1.2em;
+    color:#444;
+    font-family:times;
+    font-weight:bold;
+    text-shadow:2px 2px #CCC;
+  }
+</style>
+<div class='container'>
+  <div class='polaroid'>
+   <img src='images/birds.jpg'>
+    Those are some crazy birds!
+  </div>
+</div>
+</script>
+</article>
 
 
 <article class='slide slide-list'>
@@ -883,7 +974,7 @@ footer#site-footer {     clear:both; background-color:black;     color:white
 
 
 
-<script src='dist/coderdeck.js'></script>
+<script src='dist/coderdeck.min.js'></script>
 
 <script>
 	$(function() {
