@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript and jQuery- Web 2 Fall 2012</title>
+	<meta name="viewport" content="width=1024">
+  
+  	<!-- Replace path with correct path to deck.core.css. -->
+	<link rel="stylesheet" href="src/deck.js/core/deck.core.css" type="text/css">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="src/deck.js/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="src/css/prettify.css">
+	<link rel="stylesheet" href="src/css/deck.coder.css">
+	
+
+	<!-- Theme -->
+	<link rel="stylesheet" id='style-theme-link' href="src/css/coderdeck.css" type="text/css" >
+
+	<link rel="stylesheet" href="src/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="src/codemirror/theme/default.css">
+
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+
+	<script src='dist/jquery.min.js'></script>
+	<script src="dist/modernizr.js"></script>
+
+
+
+
+</head>
+<body class="deck-container">
+
+<script type='text/coderdeck' id='coderdeck-default'>
+  <html>
+    <head>
+      <script src='dist/jquery.min.js'>SCRIPTEND
+<link rel='stylesheet' href='reset.css' type='text/css'/>
+    </head>
+    <body>
+	    CODE
+    </body>
+</html>
+</script>
+
+
+<script type='text/coderdeck' id='coderdeck-style-nothing'>
+CODE
+</script> 	
+
+
+<script type='text/coderdeck' id='coderdeck-plain'>
+	<html>
+		<title>test</title>
+		<link rel="stylesheet" href="reset.css">
+		<body>
+			CODE
+		</body>
+	</html>
+</script>
+
+
+
+
+<article class='slide slide-subhead'>
+<h1>MassArt Web 2 </h1>
+
+<h2>
+  JavaScript and jQuery<br/>
+  <a style='text-transform:none;' href='http://bit.ly/web2fall2012-6'>http://bit.ly/web2fall2012-6</a>
+</h2>
+</article>
+
+
+<!-- Apply a class of "coder-editor" to a textarea to make it show up as runnable code -->
+<article class='slide slide-list'>
+<h2>Today</h2>
+<ul>
+  <ul>
+  	<li class="slide">
+  		<h3>Review Homework</h3>
+  	</li>
+		<li class="slide">
+			<h3>JavaScript</h3>
+		</li>
+		<li class="slide">
+			<h3>jQuery</h3>
+		</li>
+  </ul>
+</ul>
+</article>
+
+
+<script>
+(function($){
+ 
+    $.fn.shuffle = function() {
+ 
+        var allElems = this.get(),
+            getRandom = function(max) {
+                return Math.floor(Math.random() * max);
+            },
+            shuffled = $.map(allElems, function(){
+                var random = getRandom(allElems.length),
+                    randEl = $(allElems[random]).clone(true)[0];
+                allElems.splice(random, 1);
+                return randEl;
+           });
+ 
+        this.each(function(i){
+            $(this).replaceWith($(shuffled[i]));
+        });
+ 
+        return $(shuffled);
+ 
+    };
+ 
+})(jQuery);
+
+function shuffleHomework(amt) {
+	if(amt <= 0) return;
+	$("#homework li").shuffle();
+	setTimeout(function() { shuffleHomework(amt - 1); },200);
+}
+
+	</script>
+
+<article class='slide slide-list'>
+<h2>Homework Review</h2>
+	<a href='javascript:shuffleHomework(10);'>Shuffle</a>
+<ul id='homework'>
+  	<li >
+    <h3><a href='http://yifeiwang12.github.com/'>http://yifeiwang12.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://vanzimmerman.github.com/'>http://vanzimmerman.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://ldamon.github.com/'>http://ldamon.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://steinerfamily.github.com/'>http://steinerfamily.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://mhcraven.github.com/'>http://mhcraven.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://trish20.github.com/'>http://trish20.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://johnmacleod.github.com/'>http://johnmacleod.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://kanaeiref.github.com/'>http://kanaeiref.github.com/</a></h3>
+  	</li>
+    <li>
+    <h3><a href='http://mttsp.github.com/'>http://mttsp.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://joewebsta.github.com/'>http://joewebsta.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://jennpipp.github.com/'>http://jennpipp.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://ilanaiguana.github.com/'>http://ilanaiguana.github.com/</a></h3>
+    </li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+ <h2>What pieces of Javascript do we need to understand?</h2>
+ <ul>
+   <ul>
+   	<li class="slide">
+   		<h3>Strings and numbers - basic pieces of information</h3>
+   	</li>
+   	<li class="slide">
+   		<h3>Variables - where to store pieces of information</h3>
+   	</li>
+   	<li class="slide">
+   		<h3>Functions - how to call reusable pieces of code</h3>
+   	</li>
+   	<li class="slide">
+   		<h3>Callbacks - functions that get called in response to something else</h3>
+   	</li>
+   	<li class="slide">
+   		<h3>Arrays - store a list of values (like a list of variables)</h3>
+   	</li>
+   	<li class="slide">
+   		<h3>Objects - We just need to understand a little bit on these</h3>
+   	</li>
+   	<li class="slide">
+                <h3>Conditionals - controlling what parts of a program executes</h3>
+   	</li>
+   </ul>
+ </ul>
+</article>
+
+<article class='slide slide-list'>
+ <h2>A Little Demo</h2>
+ <p>The goal is to understand everything in here by the end of class today</p>
+<textarea class='coder-editor coder-editor-full'>
+<script>
+  $(function() {
+  var images = [
+    { img: "images/image1.jpg", 
+      title: "This is a drop",
+      url: "http://www.google.com",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus quam, commodo ac posuere non, facilisis et ligula. Praesent elementum sodales leo, non ultrices dolor cursus at. Suspendisse sed ipsum tempor est volutpat commodo nec quis libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
+    { img: "images/image2.jpg", 
+      title: "Dog here",
+      url: "http://www.petfinder.com",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus quam, commodo ac posuere non, facilisis et ligula. Praesent elementum sodales leo, non ultrices dolor cursus at. Suspendisse sed ipsum tempor est volutpat commodo nec quis libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
+    { img: "images/image3.jpg", 
+      title: "Some sort of building",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus quam, commodo ac posuere non, facilisis et ligula. Praesent elementum sodales leo, non ultrices dolor cursus at. Suspendisse sed ipsum tempor est volutpat commodo nec quis libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
+    { img: "images/image4.jpg", 
+     title: "Nightscape",
+     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus quam, commodo ac posuere non, facilisis et ligula. Praesent elementum sodales leo, non ultrices dolor cursus at. Suspendisse sed ipsum tempor est volutpat commodo nec quis libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit" }
+    ];
+  
+  $.each(images,function() {
+    var imageInfo = this;
+    
+    var img = $("<img>").attr({'src' : imageInfo.img,
+                     'width' : 128 }).data('properties',this);
+    img.click(function() {
+      var url;
+      if(url = $(this).data('properties').url) {
+       window.open(url,"mywin");
+      } else {
+       window.open(this.src,"mywin","status=0,toolbar=0,width=400,height=400");
+      }
+    });
+    
+    img.hover(function() {
+      $(this).addClass("selected");
+      $("#thumbnails img:not(.selected)").stop().animate({opacity: 0.4});
+
+      $("#details").show();
+      $("#title").text(imageInfo.title);
+      $("#description").text(imageInfo.description);
+
+    },function() {
+      $("#thumbnails img:not(.selected)").stop().animate({opacity: 1.0});
+      $(this).removeClass("selected");
+      
+      $("#details").hide();
+    });
+
+    img.appendTo("#thumbnails");
+  });
+  
+});
+  
+</script>
+
+<section id='thumbnails'>
+  
+</section>
+<section id='details' style='display:none;'>
+<h2>Title: <span id='title'></span></h2>
+<p>Description: <span id='description'></span></p>
+</section>
+
+<style>
+  #thumbnails img {
+    margin:10px;
+    border:4px solid white;
+  }
+  
+  #thumbnails img:hover {
+    border-color:#CCC;
+  }
+</style>
+
+
+</textarea>
+</article>
+
+<article class='slide slide-list'>
+<h2>Anonymous functions, callbacks</h2>
+ <p>We don't have to give our callback function a name, we can do it anonymously</p>
+<textarea class='coder-editor' data-save='web304-exercise-timer-saver'>
+  <script>
+
+
+    setTimeout(function() {
+      console.log('Timer1');
+    },5000);
+
+    // Add a second timer, called 5 second after the first
+
+  </script>
+</textarea>
+</article>
+
+<article class='slide slide-list'>
+<h2>Why callbacks?</h2>
+<p>A lot of stuff on the web happens "Asynchronously" - AJAX, user actions, etc</p>
+<textarea class='coder-editor' data-save='web304-exercise-clickerama'>
+  <button id='my-button'>Click me Yo!</button>
+  <script>
+
+    var clickCount = 0;
+
+    // This here is some jQuery, don't worry about it
+    // We'll cover it in a few slides.
+    $("#my-button").click(function() {
+      clickCount += 1;
+
+      alert("Time's I've been clicked:" + clickCount);
+    });
+  </script>
+</textarea>
+</article>
+
+
+<article class='slide slide-list'>
+<h2>Arrays</h2>
+<ul>
+	<li class="slide">
+		<h3>Stores an “array” of values.</h3>
+	</li>
+	<li class="slide">
+		<h3>Usually created with the bracket [ ] operator: </h3>
+                <pre class='prettyprint'>
+var arr = [ 10, 20, 30 ];
+</pre>
+	</li>
+	<li class="slide">
+          <h3>Pull out a value using square brackets [] starting at 0:</h3>
+              <pre class='prettyprint'>
+arr[0] // 10
+arr[1] // 20
+</pre>
+	</li>
+	<li class="slide">
+		<h3>get the number of entries with .length</h3>
+                <pre class='prettyprint'>
+arr.length // 3                
+</pre>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Playing with arrays</h2>
+
+<textarea class='coder-editor' data-save='web304-exercise-arrays'>
+  <script>
+
+    var myArray = [ 0, 10, 20, 30, 40 ];
+
+    console.log("myArray[2] is:" + myArray[2]);
+
+    var index = 2;
+
+    // Using a variable as an index
+    console.log("myArray[" + index + "] is:" + myArray[index]);
+
+    // Showing all variable values with jQuery $.each and a callback
+    // Stored in this
+  /*  $.each(myArray,function(idx) {
+      console.log("myArray[" + idx + "] is:" + this);
+    }); */
+
+  </script>
+</textarea>
+</article>
+
+
+<article class='slide slide-list'>
+<h2>Objects</h2>
+<ul>
+	<li class="slide">
+		<h3>A way to store data and methods together. </h3>
+	</li>
+	<li class="slide">
+		<h3>Array was an example of a built in object</h3>
+	</li>
+	<li class="slide">
+          <h3>Can create with JSON notation:</h3>
+          <pre class='prettyprint'>
+var obj = { a: 1, b: 2 };
+</pre>
+	</li>
+	<li class="slide">
+		<h3>Access the same as arrays - with square brackets.</h3>
+          <pre class='prettyprint'>
+obj['a'] // 1 
+obj['b'] // 2
+</pre>
+
+	</li>
+	<li class="slide">
+		<h3>Can also access with the dot operator</h3>
+          <pre class='prettyprint'>
+obj.a // 1
+obj.b // 2
+</pre>
+	</li>
+        <li class="slide">
+        	<h3>Can also have functions as properties</h3>
+        </li>
+        <li class="slide">
+        	<h3>Those functions can use the this property when called</h3>
+        </li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Objects</h2>
+
+<textarea class='coder-editor' data-save='web304-exercise-objects'>
+  <script>
+    var myObject = { 'a' : 10,
+                     'b' : 'Stringer',
+                     'c' : 20
+                   };
+
+   // Try pulling out various pieces of myObject using
+   // both square brackets and the dot operator
+
+    alert(myObject.a);
+
+  </script>
+</textarea>
+</article>
+
+
+<article class='slide slide-list'>
+<h2>Conditionals</h2>
+<ul>
+<li class="slide">
+	<h3>Things in javascript are either true or not true.</h3>
+</li>
+<li class="slide">
+	<h3>0, false, null, "" are all false</h3>
+</li>
+<li class="slide">
+	<h3>Everything else is true.</h3>
+</li>
+<li class="slide">
+  <h3>Use operands to check relationship between two values:</h3>
+  <pre class='prettyprint'>
+==, ===, <=, >=, !=
+
+1 == 2 // false
+1 == 1 // true
+  </pre>
+</li>
+<li class="slide">
+  <h3>Basic conditionals:</h3>
+  <ul>
+    <li class="slide">
+      <pre>if(condition) { }</pre>
+    </li>
+    <li class="slide">
+      <pre>if(condition) { } else { }</pre>
+    </li>
+    <li class="slide">
+      <pre>if(condition) { } else if { } else { }</pre>
+    </li>
+  </ul>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Conditional Exercise</h2>
+<p>Use a conditional to check if a user confirmed a ok/cancel question. Then use prompt and test against a return value. </p>
+
+<textarea class='coder-editor' data-save='web304-exercise-conditional'>
+  <script>
+    console.log(confirm("Really delete everything?"));
+    console.log(prompt("Delete how many items?"));
+  </script>
+</textarea>
+</article>
+
+<article class='slide slide-list'>
+<h2>jQuery Basics</h2>
+<ul>
+	<li class="slide">
+		<h3>Everything is “namespaced” inside of the jQuery object, which is aliased with “$”</h3>
+	</li>
+	<li class="slide">
+		<h3>...which means everything you do in jQuery starts with a $</h3>
+	</li>
+	<li class="slide">
+		<h3>Uses CSS selectors for picking pieces of the DOM out.</h3>
+	</li>
+</ul>
+</article>
+
+
+<article class='slide slide-subhead'>
+<h1>Docs are your Friend</h1>
+<h2>Get comfortable with <a href='http://docs.jquery.com'>docs.jquery.com</a></h2>
+</article>
+
+<article class='slide slide-list'>
+<h2>Loading jQuery</h2>
+<h3>Include from a CDN or locally</h3>
+<pre class='prettyprint'>
+&lt;script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'&gt;&lt;/script&gt;
+</pre>
+<h3>Or</h3>
+<pre class='prettyprint'>
+&lt;script src='js/jquery.min.js'&gt;&lt;/script&gt;
+</pre>
+<p>Need to make sure we have the file in the right location, can view in browser if there's a problem.</p>
+</article>
+
+
+<article class='slide slide-list'>
+<h2>Using jQuery</h2>
+<p>Since we often include Javscript in the head of the document, we need to make sure we wait until the
+page is loaded before we use it. We can use the jQuery on function to load stuff at the appropriate point.   </p>
+<pre class='prettyprint'>
+&lt;script&gt;
+$(document).on("ready",function() {
+  // Dom Loaded
+});
+&lt;/script&gt;
+</pre>
+</article>
+
+
+<article class='slide slide-list'>
+<h2>Why this is important..</h2>
+<textarea class='coder-editor'>
+<script>
+  $("#header").html("Modified Header");
+</script>
+<h2 id='header'>A Header</h2>
+</textarea>
+</article>
+
+<article class='slide slide-list'>
+<h2>Shorthand </h2>
+<p>Since this is so common, we can use a shorthand for this of $(function() { }) ... </p>
+<pre class='prettyprint'>
+&lt;script&gt;
+$(function() {
+  // Dom Loaded
+});
+&lt;/script&gt;
+</pre>
+</article>
+
+ <article class='slide slide-list'>
+  <h2>Basic selection + manipulation </h2>
+  <p>Let's try out $.text, $.html, $.hide, $.show,  $.css, $.attr, $.addClass, $.hasClass, $.removeClass
+   <a href='http://api.jquery.com/category/selectors/'>Selector Docs</a> / <a href='http://api.jquery.com/category/manipulation/'>Manipulation Docs</a>
+</p>
+<textarea class='coder-editor'>
+<script>
+$(function() {
+
+
+});
+</script>
+<header>
+   <h1>Site Header</h1>
+</header>
+<nav id='main-nav'>
+  <a href='#'>Item 1</a> <a href='#'>Item 2</a> <a href='#'>Item 3</a>
+</nav>
+<section>
+  <article>
+  <h1 class='article-header'>Title</h1>
+  <p>Lorem Ipsum Dolor Sic Amet</p>
+  </article>
+  <article>
+    <h1  class='article-header'>Title 2</h1>
+    <p>Lorem Ipsum Dolor Sic Amet</p>
+  </article>
+</section>
+</textarea>
+
+</article>
+
+<article class='slide slide-list'>
+  <h2>Some basic DOM insertion</h2>
+  <p>Let's try out creating elements with $(), then using $.before, $.after, $.append, $.prepend, $.wrap, $.appendTo, both with text and elements.</p>
+<textarea class='coder-editor'>
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
+<header>
+   <h1>Site Header</h1>
+</header>
+<nav id='main-nav'>
+  <a href='#'>Item 1</a> <a href='#'>Item 2</a> <a href='#'>Item 3</a>
+</nav>
+<section>
+  <article>
+  <h1 class='article-header'>Title</h1>
+  <p>Lorem Ipsum Dolor Sic Amet</p>
+  </article>
+  <article>
+    <h1  class='article-header'>Title 2</h1>
+    <p>Lorem Ipsum Dolor Sic Amet</p>
+  </article>
+</section>
+</textarea>
+</article>
+
+
+
+<article class='slide slide-list'>
+<h2>Fun Stuff: Animation and transforms</h2>
+ <p> $.fadeOut, $.fadeIn, $.slideDown, $.slideUp, $.toggle, $.stop, $.animate</p>
+<textarea class='coder-editor'>
+<script>
+$(document).ready(function() {
+
+
+});
+</script>
+
+
+&lt;style&gt;
+  .box { 
+    position:absolute; 
+    width:100px; 
+    height:100px;
+    background-color:red;
+    }
+
+  #box2 { right:0px; }
+&lt;/style&gt;
+
+&lt;div class='box' id='box1'&gt;&lt;/div&gt;
+&lt;div class='box' id='box2'&gt;&lt;/div&gt;
+
+</textarea>
+</article>
+
+<article class='slide slide-list'>
+<h2>Events</h2>
+<p>$.on, $.click, $.dblclick, $.mouseenter, $.mouseleave, $.hover </p>
+<textarea class='coder-editor' >
+<script>
+
+$(document).ready(function() {
+
+
+});
+
+</script>
+
+
+&lt;style&gt;
+  .box { 
+    position:absolute; 
+    width:100px; 
+    height:100px;
+    background-color:red;
+    }
+
+  #box2 { right:0px; }
+&lt;/style&gt;
+
+&lt;div class='box' id='box1'&gt;&lt;/div&gt;
+&lt;div class='box' id='box2'&gt;&lt;/div&gt;
+
+</textarea>
+</article>
+
+
+<article class='slide slide-list'>
+ <h2>Demo Revisited</h2>
+ <p>The goal is to understand everything in here by the end of class today</p>
+<textarea class='coder-editor coder-editor-full'>
+<script>
+  $(function() {
+  var images = [
+    { img: "images/image1.jpg", 
+      title: "This is a drop",
+      url: "http://www.google.com",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus quam, commodo ac posuere non, facilisis et ligula. Praesent elementum sodales leo, non ultrices dolor cursus at. Suspendisse sed ipsum tempor est volutpat commodo nec quis libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
+    { img: "images/image2.jpg", 
+      title: "Dog here",
+      url: "http://www.petfinder.com",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus quam, commodo ac posuere non, facilisis et ligula. Praesent elementum sodales leo, non ultrices dolor cursus at. Suspendisse sed ipsum tempor est volutpat commodo nec quis libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
+    { img: "images/image3.jpg", 
+      title: "Some sort of building",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus quam, commodo ac posuere non, facilisis et ligula. Praesent elementum sodales leo, non ultrices dolor cursus at. Suspendisse sed ipsum tempor est volutpat commodo nec quis libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit" },
+    { img: "images/image4.jpg", 
+     title: "Nightscape",
+     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum risus quam, commodo ac posuere non, facilisis et ligula. Praesent elementum sodales leo, non ultrices dolor cursus at. Suspendisse sed ipsum tempor est volutpat commodo nec quis libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit" }
+    ];
+  
+  $.each(images,function() {
+    var imageInfo = this;
+    
+    var img = $("<img>").attr({'src' : imageInfo.img,
+                     'width' : 128 }).data('properties',this);
+    img.click(function() {
+      var url;
+      if(url = $(this).data('properties').url) {
+       window.open(url,"mywin");
+      } else {
+       window.open(this.src,"mywin","status=0,toolbar=0,width=400,height=400");
+      }
+    });
+    
+    img.hover(function() {
+      $(this).addClass("selected");
+      $("#thumbnails img:not(.selected)").stop().animate({opacity: 0.4});
+
+      $("#details").show();
+      $("#title").text(imageInfo.title);
+      $("#description").text(imageInfo.description);
+
+    },function() {
+      $("#thumbnails img:not(.selected)").stop().animate({opacity: 1.0});
+      $(this).removeClass("selected");
+      
+      $("#details").hide();
+    });
+
+    img.appendTo("#thumbnails");
+  });
+  
+});
+  
+</script>
+
+<section id='thumbnails'>
+  
+</section>
+<section id='details' style='display:none;'>
+<h2>Title: <span id='title'></span></h2>
+<p>Description: <span id='description'></span></p>
+</section>
+
+<style>
+  #thumbnails img {
+    margin:10px;
+    border:4px solid white;
+  }
+  
+  #thumbnails img:hover {
+    border-color:#CCC;
+  }
+</style>
+
+
+</textarea>
+</article>
+
+
+
+<article class='slide slide-list'>
+<h2>Putting it all together</h2>
+<p>Let's use two buttons to increase and decrease a counter.</p>
+
+<textarea class='coder-editor' data-save='web304-exercise-finale'>
+  <button id='increase'>Increase</button>
+  <button id='decrease'>Decrase</button>
+
+  <div id='counter'>0</div>
+  <script>
+
+    var counterValue = 0;
+
+    // Use the click method on $("#increase").click(function() { ... });
+    // Use console.log to map the value
+
+    // Next use the click method on #decrease to decrease the counter
+
+    // Now use the html() method to set the value of coutner
+
+    // Now make sure we don't go under 0 or over 10
+  </script>
+</textarea>
+</article>
+
+<article class='slide slide-list'>
+<h2>Plugins: Barebones</h2>
+<p>Let's use the cycle plugin: <a href='http://jquery.malsup.com/cycle/'>http://jquery.malsup.com/cycle/</a> (images from <a href='http://lorempixel.com'>http://lorempixel.com</a>)</p>
+<textarea class='coder-editor' data-coder-template="coderdeck-style-nothing">
+<html>
+  <head>
+    <!-- We include jquery -->
+    <script src='js/jquery.min.js'></script>
+    <!-- We include the plugin -->
+    <script src='js/jquery.cycle.all.js'></script>
+  </head>
+  <body>
+    <div id='slideshow'>
+      <img src='images/image1.jpg'/>
+      <img src='images/image2.jpg'/>
+      <img src='images/image3.jpg'/>
+      <img src='images/image4.jpg'/>
+    </div>
+    <script>
+      $(function() {
+        $('#slideshow').cycle();
+        });     
+    </script>
+  </body>
+</textarea>
+</article>
+
+<article class='slide slide-list'>
+<h2>Cycle: Style and Options</h2>
+<textarea class='coder-editor' data-coder-template="coderdeck-style-nothing">
+<html>
+  <head>
+    <!-- We include jquery -->
+    <script src='js/jquery.min.js'></script>
+    <!-- We include the plugin -->
+    <script src='js/jquery.cycle.all.js'></script>
+
+    <style>
+       /* #slideshow img { border:1px solid #CCC; padding:10px; border-radius:10px; box-shadow:5px 5px 10px #CCC;} */
+    </style>
+  </head>
+  <body>
+    <div id='slideshow'>
+      <img src='images/image1.jpg'/>
+      <img src='images/image2.jpg'/>
+      <img src='images/image3.jpg'/>
+      <img src='images/image4.jpg'/>
+    </div>
+    <script>
+      $(document).ready(function() {
+        $('#slideshow').cycle({
+          //next: "#slideshow",
+          //speed: 5000,
+          //timeout: 200,
+          //random: 1,
+          fx: 'fade' 
+          // transition types, ex: fade, scrollUp, shuffle, etc...
+        });
+      });     </script>
+  </body>
+</textarea>
+</article>
+
+
+<article class='slide slide-homework'>
+<h2>Homework</h2>
+	
+	<h3 class='slide'>Coding</h3>
+       <ul class='slide'>
+			<li>
+      <h3>Add a jQuery plugin of some sort to your site</h3>
+			</li>
+		</ul>
+</ul>	
+	
+	
+</article>
+
+
+
+<script src='dist/coderdeck.min.js'></script>
+
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
