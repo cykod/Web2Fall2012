@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Forms / Ajax / Server Side - Web 2 CDGD339</title>
+  
+	<meta name="viewport" content="width=1024">
+  
+  	<!-- Replace path with correct path to deck.core.css. -->
+	<link rel="stylesheet" href="src/deck.js/core/deck.core.css" type="text/css">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="src/deck.js/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="src/css/prettify.css">
+	<link rel="stylesheet" href="src/css/deck.coder.css">
+	
+
+	<!-- Theme -->
+	<link rel="stylesheet" id='style-theme-link' href="src/css/coderdeck.css" type="text/css" >
+
+	<link rel="stylesheet" href="src/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="src/codemirror/theme/default.css">
+
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+
+	<script src='dist/jquery.min.js'></script>
+	<script src="dist/modernizr.js"></script>
+
+
+</head>
+<body class="deck-container">
+
+<script type='text/coderdeck' id='coderdeck-default'>
+  <html>
+    <head>
+      <script src='dist/jquery.min.js'>SCRIPTEND
+<link rel='stylesheet' href='reset.css' type='text/css'/>
+    </head>
+    <body>
+	    CODE
+    </body>
+</html>
+</script>
+
+
+<script type='text/coderdeck' id='coderdeck-style-nothing'>
+CODE
+</script> 	
+
+
+
+<article class='slide slide-subhead'>
+<h1>MassArt Web 2 </h1>
+
+<h2>
+  REST and AJAX<br/>
+  <a href='http://bit.ly/web2fall2012-7'>http://bit.ly/web2fall2012-7</a>
+</h2>
+</article>
+
+
+<!-- Apply a class of "coder-editor" to a textarea to make it show up as runnable code -->
+<article class='slide slide-list'>
+<h2>Today</h2>
+<ul>
+  <ul>
+  	<li class="slide">
+  		<h3>Review Homework</h3>
+  	</li>
+    <li class='slide'>
+      <h3>Discuss Final Projects</h3>
+    </li>
+    <li class='slide'>
+      <h3>Forms</h3>
+    </li>
+		<li class="slide">
+			<h3>jQuery &amp; Ajax</h3>
+		</li>
+  </ul>
+</ul>
+</article>
+
+
+<script>
+(function($){
+ 
+    $.fn.shuffle = function() {
+ 
+        var allElems = this.get(),
+            getRandom = function(max) {
+                return Math.floor(Math.random() * max);
+            },
+            shuffled = $.map(allElems, function(){
+                var random = getRandom(allElems.length),
+                    randEl = $(allElems[random]).clone(true)[0];
+                allElems.splice(random, 1);
+                return randEl;
+           });
+ 
+        this.each(function(i){
+            $(this).replaceWith($(shuffled[i]));
+        });
+ 
+        return $(shuffled);
+ 
+    };
+ 
+})(jQuery);
+
+function shuffleHomework(amt) {
+	if(amt <= 0) return;
+	$("#homework li").shuffle();
+	setTimeout(function() { shuffleHomework(amt - 1); },200);
+}
+
+	</script>
+<article class='slide slide-list'>
+<h2>Homework Review</h2>
+	<a href='javascript:shuffleHomework(10);'>Shuffle</a>
+<ul id='homework'>
+  	<li >
+    <h3><a href='http://yifeiwang12.github.com/'>http://yifeiwang12.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://vanzimmerman.github.com/'>http://vanzimmerman.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://ldamon.github.com/'>http://ldamon.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://steinerfamily.github.com/'>http://steinerfamily.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://mhcraven.github.com/'>http://mhcraven.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://trish20.github.com/'>http://trish20.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://johnmacleod.github.com/'>http://johnmacleod.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://kanaeiref.github.com/'>http://kanaeiref.github.com/</a></h3>
+  	</li>
+    <li>
+    <h3><a href='http://mttsp.github.com/'>http://mttsp.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://joewebsta.github.com/'>http://joewebsta.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://jennpipp.github.com/'>http://jennpipp.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://ilanaiguana.github.com/'>http://ilanaiguana.github.com/</a></h3>
+    </li>
+</ul>
+</article>
+
+<article class='slide slide-subhead'>
+  <h1>Final Project</h1>
+  <h2>Proposals due next week</h2>
+</article>
+
+
+
+<article class='slide slide-list'>
+<h2>Forms</h2>
+<ul>
+	<li>
+		<h3>Solve the problem of getting data into a site</h3>
+	</li>
+	<li>
+		<h3>Requires a server (we covered this part)</h3>
+	</li>
+	<li>
+		<h3>Doesn't require javascript (for basic forms)</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Form Basics</h2>
+<ul>
+	<li>
+		<h3>Use the 'name' attribute to control what name gets sent to the server</h3>
+	</li>
+	<li>
+		<h3>Use 'value' set current value</h3>
+	</li>
+	<li>
+		<h3>Use the 'id' field to control via javascript.</h3>
+	</li>
+	<li>
+		<h3>Use a label tag for labels, add for attribute</h3>
+	</li>
+	<li>
+		<h3>Style via CSS</h3>
+    
+	</li>
+</ul>
+<pre class='prettyprint'>
+&lt;label for='email'&gt;Email&lt;/label&gt;
+&lt;input id='email' name='user[email]'type='text' size=’20’/&gt;
+</pre>
+</article>
+
+<article class='slide slide-list'>
+<h2>Basic Form Elements</h2>
+<ul>
+	<li><h3>Text Fields <input type='text' /></h3></li>
+	<li><h3>Radio Buttons <input type='radio' h3></li>
+	<li><h3>Checkboxes <input type='check' /></h3></li>
+  <li><h3>Select <select><option>Option A</option></select></h3></li>
+	<li><h3>Text areas <textarea>Content</textarea></h3></li>
+	<li><h3>Image (server side) <input type='image' /></h3></li>
+	<li><h3>Submit Button <input type='submit' /></h3></li>
+	<li><h3>Reset <input type='reset'/></h3></li>
+	<li><h3>Button <button>Button Text</button></h3></li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>HTML5 Form Elements</h2>
+<ul>
+	<li><h3>Adds a whole bunch of new types</h3></li>
+	<li><h3>Takes advantage of the fallback to a text field</h3></li>
+	<li><h3><a href='http://www.456bereastreet.com/lab/html5-
+	input-types/' target='_blank'>http://www.456bereastreet.com/lab/html5-input-types/</a></h3></li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>2 Type of Methods</h2>
+<ul>
+	<li>
+		<h3>Forms have "actions" - destination page</h3>
+	</li>
+	<li>
+		<h3>And Methods - way it's submitted</h3>
+	</li>
+	<li>
+		<h3>GET (which are put on the url string)</h3>
+		 <ul>
+			<li><h3><a href='http://mysite.com?arg1=A&arg2=B' target='_blank'>http://mysite.com?arg1=A&arg2=B</a></h3></li>
+		</ul>
+	</li>
+	<li>
+		<h3>POST (which are submitted in the body)</h3>
+		 <ul>
+			<li><h3>Take a look at a page submission via Firebug</h3></li>
+		</ul>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-subhead'>
+  <h1>Ajax</h1>
+</article>
+
+
+<article class='slide slide-list'>
+ <h2>Ajax</h2>
+ <p><a href='http://api.jquery.com/jQuery.ajax/'>$.ajax</a>, $.get, $.post, $.getJSON </p>
+<textarea class='coder-editor'>
+<script>
+$(document).ready(function() {
+
+var ajax = $.get("names.json",function(data) {
+  alert(data);
+  console.log(data);
+});
+
+});
+
+</script>
+</textarea>
+ </article>
+
+
+
+<article class='slide slide-subhead'>
+  <h1>Ajax is same domain only...</h1>
+  <h3>Means you need a server running to access data</h3>
+</article>
+
+
+<article class='slide slide-subhead'>
+  <h1>Fix: CORS + JSONp</h1>
+  <h3> Cross-origin resource sharing means you can make AJAX calls across domains, which means you don't need to have a server to work with data.</h3>
+</article>
+
+
+
+ <article class='slide'>
+ <h2>JSONp</h2>
+ <p>Ajax is same-domain only. So there's a hack to pull data across domains called $.getScript </p>
+ <textarea class='coder-editor'>
+<script>
+$(document).ready(function() {
+ var username = 'aplusk';
+ var count = 10;
+ // aplusk.json
+ $.getJSON('https://api.twitter.com/1/statuses/user_timeline.json?screen_name=' + username + '&callback=?',
+	  function(data) {
+		alert(data);
+		console.log(data);
+	  });
+});
+</script>
+
+</textarea>
+</article>
+
+
+
+<article class='slide slide-list'>
+  <h2>Representational State Transfer</h2>
+  <ul>
+  	<li class="slide">REST is built off the idea of resources</li>
+  	<li class="slide">Accessible via a URI in HTTP</li>
+  	<li class="slide">Exchange via representations of those resources</li>
+  	<li class="slide">Interact via HTTP verbs (GET, PUT, POST, DELETE)</li>
+  </ul>
+
+</article>
+
+<article class='slide slide-list'>
+<h1>CORS Example on Heroku</h1>
+<p><a href='http://cors-demo.herokuapp.com/heroku_app7929607/rest'>http://cors-demo.herokuapp.com/heroku_app7929607/rest</a></p>
+<textarea class='coder-editor'>
+<script>
+var baseURL = "http://cors-demo.herokuapp.com/heroku_app7929607/testerama/";
+function logIt(data) {  console.log(data); }
+
+var data = { name: "Pascal Rettig", 
+             favoriteColor: "blue", 
+             favoriteCereal:"Pebble O's" };
+// $.post(baseURL,data,logIt);
+// $.getJSON(baseURL,logIt);
+// var id = ...
+// $.getJSON(baseURL + id,logIt);
+// $.ajax({ url: baseURL + id, success: logIt, type: "DELETE" });
+</script>
+</textarea>
+</article>
+
+<article class='slide slide-list'>
+<h1>Form example</h1>
+<p><a href='http://cors-demo.herokuapp.com/heroku_app7929607/demo'>http://cors-demo.herokuapp.com/heroku_app7929607/demo2</a></p>
+<textarea class='coder-editor coder-editor-instant'>
+<script>
+var baseURL = "http://cors-demo.herokuapp.com/heroku_app7929607/demo2/";
+function getNames() {
+  $.getJSON(baseURL,function(data) {
+      $("#names").empty();
+      $.each(data,function() { 
+        $("<li>").text(this.name + " (color: " + this.color + ")")
+                 .data("id",this.id)
+                 .appendTo("#names"); 
+                });
+  });
+}
+
+function addName(e) {
+  e.preventDefault();
+  $.post(baseURL,$("#myForm").serialize(),getNames);
+  $("#myForm")[0].reset();
+}
+
+function delName() {
+  var id = $(this).data("id");
+  $.ajax({ url: baseURL  + id, success: getNames, type: "DELETE" });
+}
+
+$(function() { 
+    $("#push").on("click",addName);
+    $("#names").on("click","li",delName);
+    getNames();
+});
+</script>
+
+<form id='myForm'>
+  <input id='name' placeholder="Name" name='name' />
+  <input id='color' placeholder="Color" name='color' />
+  <button id='push'>Add Name</button>
+</form>
+<ul id='names'></ul>
+</textarea>
+</article>
+
+
+
+
+
+ <article class='slide'>
+ <h2>Exercise 1:</h2>
+ <p>Display a Twitter Feed </p>
+ <textarea class='coder-editor coder-editor-full' data-save='2012-twitter-exercise' >
+<script>
+
+$(document).ready(function() {
+ var username = 'aplusk';
+ var count = 10;
+ // aplusk.json
+ $.getJSON('http://twitter.com/statuses/user_timeline/' + username + '.json?callback=?',
+	  function(data) {
+		console.log(data);
+	  });
+});
+</script>
+
+<h1 id='feed-name'></h1>
+<div id='feed'>
+
+</div>
+
+</textarea>
+</article>
+
+ <article class='slide'>
+ <h2>Exercise 2:</h2>
+ <p>Create a form, display the data that comes out</p>
+ <textarea class='coder-editor coder-editor-full' data-save='2012-thinger-exercise' >
+<script>
+var baseURL = "http://cors-demo.herokuapp.com/heroku_app7929607/demo2/";
+function getNames() {
+  $.getJSON(baseURL,function(data) {
+      $("#names").empty();
+      $.each(data,function() { 
+        $("<li>").text(this.name + " (color: " + this.color + ")")
+                 .data("id",this.id)
+                 .appendTo("#names"); 
+                });
+  });
+}
+
+function addName(e) {
+  e.preventDefault();
+  $.post(baseURL,$("#myForm").serialize(),getNames);
+  $("#myForm")[0].reset();
+}
+
+function delName() {
+  var id = $(this).data("id");
+  $.ajax({ url: baseURL  + id, success: getNames, type: "DELETE" });
+}
+
+$(function() { 
+    $("#push").on("click",addName);
+    $("#names").on("click","li",delName);
+    getNames();
+});
+</script>
+
+<form id='myForm'>
+  <input id='name' placeholder="Name" name='name' />
+  <input id='color' placeholder="Color" name='color' />
+  <button id='push'>Add Name</button>
+</form>
+<ul id='names'></ul>
+</textarea>
+</article>
+
+<article class='slide slide-homework'>
+<h2>Homework</h2>
+	
+	<h3 class='slide'>Coding</h3>
+       <ul class='slide'>
+      <li>
+        <h3>Final Project Propsoal</h3>
+      </li>
+			<li>
+       <h3>Pull in some dynamic content - can use http://cors-demo.herokuapp.com/heroku_app7929607 API</h3>
+			</li>
+		</ul>
+</ul>	
+	
+	
+</article>
+
+
+
+<script src='dist/coderdeck.min.js'></script>
+
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
