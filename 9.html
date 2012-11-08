@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Deployment Server Side - Web 2 CDGD339</title>
+  
+	<meta name="viewport" content="width=1024">
+  
+  	<!-- Replace path with correct path to deck.core.css. -->
+	<link rel="stylesheet" href="src/deck.js/core/deck.core.css" type="text/css">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="src/deck.js/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="src/deck.js/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="src/css/prettify.css">
+	<link rel="stylesheet" href="src/css/deck.coder.css">
+	
+
+	<!-- Theme -->
+	<link rel="stylesheet" id='style-theme-link' href="src/css/coderdeck.css" type="text/css" >
+
+	<link rel="stylesheet" href="src/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="src/codemirror/theme/default.css">
+
+
+  <link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
+
+	<script src='dist/jquery.min.js'></script>
+	<script src="dist/modernizr.js"></script>
+
+
+</head>
+<body class="deck-container">
+
+<script type='text/coderdeck' id='coderdeck-default'>
+  <html>
+    <head>
+      <script src='dist/jquery.min.js'>SCRIPTEND
+<link rel='stylesheet' href='reset.css' type='text/css'/>
+    </head>
+    <body>
+	    CODE
+    </body>
+</html>
+</script>
+
+
+<script type='text/coderdeck' id='coderdeck-style-nothing'>
+CODE
+</script> 	
+
+
+
+<article class='slide slide-subhead'>
+<h1>MassArt Web 2 </h1>
+
+<h2>
+  Deployment and Server Side<br/>
+  <a href='http://bit.ly/web2fall2012-9' style='text-transform:none;'>http://bit.ly/web2fall2012-9</a>
+</h2>
+</article>
+
+
+<!-- Apply a class of "coder-editor" to a textarea to make it show up as runnable code -->
+<article class='slide slide-list'>
+<h2>Today</h2>
+<ul>
+  <ul>
+  	<li class="slide">
+  		<h3>Review Final Project Work</h3>
+  	</li>
+    <li class='slide'>
+    <h3>Server Side</h3>
+    </li>
+    <li class='slide'>
+    <h3>PHP</h3>
+    </li>
+    <li class='slide'>
+    <h3>Deployment</h3>
+    </li>
+  </ul>
+</ul>
+</article>
+
+
+<script>
+(function($){
+ 
+    $.fn.shuffle = function() {
+ 
+        var allElems = this.get(),
+            getRandom = function(max) {
+                return Math.floor(Math.random() * max);
+            },
+            shuffled = $.map(allElems, function(){
+                var random = getRandom(allElems.length),
+                    randEl = $(allElems[random]).clone(true)[0];
+                allElems.splice(random, 1);
+                return randEl;
+           });
+ 
+        this.each(function(i){
+            $(this).replaceWith($(shuffled[i]));
+        });
+ 
+        return $(shuffled);
+ 
+    };
+ 
+})(jQuery);
+
+function shuffleHomework(amt) {
+	if(amt <= 0) return;
+	$("#homework li").shuffle();
+	setTimeout(function() { shuffleHomework(amt - 1); },200);
+}
+
+	</script>
+<article class='slide slide-list'>
+<h2>Homework Review</h2>
+	<a href='javascript:shuffleHomework(10);'>Shuffle</a>
+<ul id='homework'>
+  	<li >
+    <h3><a href='http://yifeiwang12.github.com/'>http://yifeiwang12.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://vanzimmerman.github.com/'>http://vanzimmerman.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://ldamon.github.com/'>http://ldamon.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://steinerfamily.github.com/'>http://steinerfamily.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://mhcraven.github.com/'>http://mhcraven.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://trish20.github.com/'>http://trish20.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://johnmacleod.github.com/'>http://johnmacleod.github.com/</a></h3>
+  	</li>
+  	<li >
+    <h3><a href='http://kanaeiref.github.com/'>http://kanaeiref.github.com/</a></h3>
+  	</li>
+    <li>
+    <h3><a href='http://mttsp.github.com/'>http://mttsp.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://joewebsta.github.com/'>http://joewebsta.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://jennpipp.github.com/'>http://jennpipp.github.com/</a></h3>
+    </li>
+    <li>
+    <h3><a href='http://ilanaiguana.github.com/'>http://ilanaiguana.github.com/</a></h3>
+    </li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>What is the server?</h2>
+<ul>
+	<li>
+		<h3>The machine that your browser talks to</h3>
+	</li>
+	<li>
+		<h3>Generally "speaks" http</h3>
+	</li>
+	<li>
+		<h3>Serves you static html + files</h3>
+	</li>
+	<li>
+		<h3>Also can generate "dynamic content"</h3>
+	</li>
+	<li>
+		<h3>But, by the time it gets to your browser, it looks like static content.</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-subhead'>
+  <h1>Deploy!</h1>
+</article>
+
+
+<article class='slide slide-subhead'>
+	<h1>Hosting &amp; FTPing your website</h1>
+	<h2>quick and cheap</h2>
+</article>
+
+<article class='slide slide-subhead'>
+	<h1><a href='http://heroku.com/'>Heroku</a><h1>
+</article>	
+
+<article class='slide slide-subhead'>
+	<h1><a href='http://dreamhost.com/'>DreamHost</a><h1>
+</article>	
+
+<article class='slide slide-subhead'>
+<h1><a href='http://fetchsoftworks.com/'>Fetch FTP</a><h1>
+</article>
+
+
+<article class='slide slide-list'>
+  <h1>Using Heroku</h1>
+  <ul>
+  	<li class="slide">
+  		<h3>Download and install the heroku toolbelt</h3>
+  	</li>
+  	<li class="slide">
+  		<h3>Create a repository on GitHub</h3>
+  	</li>
+  	<li class="slide">
+    <h3>Make sure you have an index.php file</h3>
+  	</li>
+  	<li class="slide">
+  		<h3>Run: heroku create app-name</h3>
+  	</li>
+  	<li class="slide">
+      <h3>Run: git push heroku master</h3>
+  	</li>
+  	<li class="slide">
+  		<h3>Go to: app-name.herokuapp.com</h3>
+  	</li>
+  	<li class="slide">
+  		<h3>Bonus points: Configure your own domain</h3>
+  	</li>
+  </ul>
+</article>
+
+<article class='slide slide-list'>
+  <h1>SSH</h1>
+  <ul>
+  	<li class="slide">
+    <h3>Need a standard Web Hosting account (like dreamhost.com)<h3>
+  	</li>
+  	<li class="slide">
+    <h3>Manually copy over the file that you have changed</h3>
+  	</li>
+  </ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Exercise 1: Copy a index.html file over</h2>
+<ul>
+	<li>
+		<h3>Log into your ftp (or my) account. massartuser / massart1$ </h3>
+	</li>
+	<li>
+  <h3>Create a directory with your name</h3>
+	</li>
+	<li>
+		<h3>Go to the web page. massart.dreamhosters.com/yourname/</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>PHP</h2>
+<ul>
+	<li>
+		<h3>The best first language to learn</h3>
+	</li>
+	<li>
+		<h3>Available on almost all hosting accounts</h3>
+	</li>
+	<li>
+		<h3>Script and HTML mixed together in one file</h3>
+	</li>
+	<li>
+		<h3>Not the only language (not my favorite language)</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>PHP 101</h2>
+<ul>
+	<li><h3>Sort of object-oriented</li>
+	<li><h3>Variables prefixed with “$”</li>
+	<li><h3>Lots of superficial similarities to javascript</li>
+	<li><h3>Embed into HTML</li>
+	<li><h3><a href='http://www.learnphp-tutorial.com/' target='_blank'>http://www.learnphp-tutorial.com/</a></li>
+</ul>
+</article>
+
+
+<article class='slide slide-list'>
+<h2>If you continue with development...</h2>
+<ul>
+	<li><h3>You’ll want to set up your computer as a development machine</h3></li>
+	<li><h3><a href='http://foundationphp.com/tutorials/php_leopard.php' target='_blank'>http://foundationphp.com/tutorials/php_leopard.php</a></h3></li>
+	<li><h3><a href='http://php.iis.net/' target='_blank'>http://php.iis.net/</a></h3></li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Exercise 2: Hello World</h2>
+<ul>
+	<li>
+		<h3>Log into your ftp (or my) account.  </h3>
+	</li>
+	<li>
+		<h3>Create a new file (locally) called index.php</h3>
+	</li>
+	<li>
+		<h3>Type "Hello World" into the file</h3>
+	</li>
+	<li>
+  <h3>Delete the index.html file you uploaded before</h3>
+	</li>
+	<li>
+  <h3>Upload your index.php</h3>
+	</li>
+	<li>
+		<h3>Go to the web page.</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Exercise 3: Hello PHP</h2>
+<ul>
+	<li>
+		<h3>Change your file from "Hello World" to</h3>
+	</li>
+	<li>
+		<h3>< ?php echo "Hello World" ?></h3>
+	</li>
+	<li>
+		<h3>then try:</h3>
+	</li>
+	<li>
+		<h3>< ?php echo “Hello World at “ . time(); ?></h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Forms</h2>
+<ul>
+	<li>
+		<h3>Data submitted to the server</h3>
+	</li>
+	<li>
+		<h3>Accessible in php via $_REQUEST, $_POST, and $_GET</h3>
+	</li>
+	<li>
+		<h3>e.g.<br/>
+			&lt; form action=’?’ method=‘post’><br/>
+		&lt; input type=‘text’ name=‘field’/><br/>
+		&lt; input type=‘submit’ value=’Go!’/>  &lt;/form></h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Exercise 4: Create a form</h2>
+<ul>
+	<li>
+		<h3>Accept and input first and last name</h3>
+	</li>
+	<li>
+  <h3>Output them to the page with &lt;?php print_r($_REQUEST); ?></h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Including the same content</h2>
+<ul>
+	<li>
+		<h3>What about the same header and footer over and over on your site?</h3>
+	</li>
+	<li>
+		<h3>use the php include(..) method</h3>
+	</li>
+	<li>
+		<h3>Can also use require_once(..)</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Exercise 5</h2>
+<ul>
+	<li>
+		<h3>Modify your page to include a header and a footer that you include with PHP</h3>
+	</li>
+	<li>
+		<h3>Then create another page that uses the same header and footer</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Setting variables</h2>
+<ul>
+	<li>
+  <h3>You can set variables with = sign assignment, e.g.: $page = "hello"</h3>
+	</li>
+	<li>
+  <h3>You can access those variables anywhere you like.</h3>
+	</li>
+	<li>
+  <h3>This includes other files, which means you can use them to pass in state</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Exercise 6</h2>
+<ul>
+	<li>
+    <h3>Create navigation in your header</h3>
+	</li>
+	<li>
+    <h3>Set a variable to indicate what page you are on</h3>
+	</li>
+</ul>
+</article>
+
+<article class='slide slide-list'>
+<h2>Exercise 7: Sending an Email</h2>
+<ul>
+	<li>
+		<h3>Create a form that lets people submit a subject and a message</h3>
+	</li>
+	<li>
+		<h3>Look at the mail command and send an email with a the subject and message</h3>
+	</li>
+	<li>
+		<h3><a href='http://php.net/manual/en/funcref.php' target='_blank'>http://php.net/manual/en/funcref.php</a></h3>
+	</li>
+</ul>
+</article>
+
+
+<article class='slide slide-homework'>
+<h2>Homework</h2>
+	
+<ul>
+      <li>
+      <h3>Deploy 1 of your websites either to Heroku (create a separate repo) or to Dreamhost subdirectory</h3>
+      </li>
+			<li>
+      <h3>Change your pages to end in .php and use include to handle repeated code</h3>
+      <li>
+			<li>
+      <h3>Extra Credit: Add in a contact form that emails you</h3>
+      <li>
+		</ul>
+</ul>	
+	
+	
+</article>
+
+
+
+<script src='dist/coderdeck.min.js'></script>
+
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
